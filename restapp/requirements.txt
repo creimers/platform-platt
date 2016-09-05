@@ -1,0 +1,23 @@
+Django==1.10.1
+
+# channels 
+channels
+asgi-redis
+daphne
+
+# REST
+djangorestframework==3.4.6
+djangorestframework-filters==0.8.0
+djangorestframework-jwt==1.8.0
+djoser==0.5.1
+
+Pillow==3.2.0
+
+# dev
+ipdb
+ipython
+ipython-genutils
+
+uWSGI==2.0.12
+dj-database-url==0.4.1
+psycopg2==2.6.1
