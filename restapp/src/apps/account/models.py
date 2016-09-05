@@ -7,7 +7,7 @@ class Account(AbstractUser):
         ('learn', 'learn'),
         ('teach', 'teach')
     )
-    role = models.CharField(max_length=5)
+    role = models.CharField(max_length=5, choices=ROLE_CHOICES)
     location = models.CharField(max_length=255, blank=True, null=True)
     lat = models.FloatField(null=True, blank=True)
     lng = models.FloatField(null=True, blank=True)
