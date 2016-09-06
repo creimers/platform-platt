@@ -15,4 +15,4 @@ django:
     - ./src/:/project/src/
 
 postgres:
-  image: postgres
+  image: mdillon/postgis

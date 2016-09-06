@@ -1,4 +1,4 @@
-Django==1.10.1
+Django==1.9.9
 
 # channels 
 channels
@@ -10,6 +10,7 @@ djangorestframework==3.4.6
 djangorestframework-filters==0.8.0
 djangorestframework-jwt==1.8.0
 djoser==0.5.1
+django-extra-fields
 
 Pillow==3.2.0
 
