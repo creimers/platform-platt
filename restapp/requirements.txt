@@ -22,3 +22,4 @@ ipython-genutils
 uWSGI==2.0.12
 dj-database-url==0.4.1
 psycopg2==2.6.1
+pytest-django==2.9.1
