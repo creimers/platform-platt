@@ -1,4 +1,5 @@
 import pytest
+import random
 
 from django.contrib.auth import get_user_model
 from django.contrib.gis.geos import Point
@@ -61,7 +62,8 @@ def users():
             first_name="John %s" % i,
             last_name="Doe %s" % i,
             coords=point,
-            location=loc['name']
+            location=loc['name'],
+            role=random.choice(['teach', 'learn'])
         )
         users.append(user)
     return users
