@@ -18,6 +18,51 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 
+from djoser.views import (
+    UserView,
+    RegistrationView,
+    ActivationView,
+    PasswordResetView,
+    PasswordResetConfirmView,
+    SetPasswordView
+)
+
+from rest_framework.routers import DefaultRouter
+
+from rest_framework_jwt.views import (
+    obtain_jwt_token,
+    refresh_jwt_token,
+    verify_jwt_token
+)
+
+from apps.account.viewsets import UsersViewset
+
+API_ROOT = DefaultRouter()
+API_ROOT.register(
+    r'users', UsersViewset, base_name='users')
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    # djoser
+    url(r'^v1/account/$', UserView.as_view(), name='profile'),
+    url(r'^v1/register/$', RegistrationView.as_view(), name='register'),
+    url(r'^v1/activate/$', ActivationView.as_view(), name='activate'),
+    url(
+        r'^v1/password/reset/$',
+        PasswordResetView.as_view(),
+        name='password_reset'
+    ),
+    url(
+        r'^v1/password/reset/confirm/',
+        PasswordResetConfirmView.as_view(),
+        name='password_reset_confirm'
+    ),
+
+    # JWT
+    url(r'^v1/authenticate/', obtain_jwt_token),
+    url(r'^v1/reauthenticate/', refresh_jwt_token),
+    url(r'^v1/verify-token/', verify_jwt_token),
+
+    url(r'^v1/', include(API_ROOT.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
