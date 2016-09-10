@@ -1,5 +1,8 @@
 FROM python:3.5
 
+RUN apt-get -qq update
+RUN apt-get -y install binutils libproj-dev gdal-bin
+
 ADD . /project
 WORKDIR /project
 
