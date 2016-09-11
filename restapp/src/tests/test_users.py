@@ -66,7 +66,9 @@ def test_users_list_filter_radius_GET_200(rest_client, users):
 
     assert response.status_code == 200
     for user in response.data:
-        coords = Point(float(user.get('lng')), float(user.get('lat')))
+        latitude = float(user['coords']['latitude'])
+        longitude = float(user['coords']['longitude'])
+        coords = Point(longitude, latitude)
         dist = distance(point, coords)
         assert dist.km <= radius
 

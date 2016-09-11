@@ -13,11 +13,3 @@ class Account(AbstractUser):
 
     profile_image = models.ImageField(null=True, blank=True)
     personal_description = models.TextField(null=True)
-
-    @property
-    def lat(self):
-        return self.coords.coords[1]
-
-    @property
-    def lng(self):
-        return self.coords.coords[0]

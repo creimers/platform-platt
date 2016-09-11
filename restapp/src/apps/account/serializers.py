@@ -27,7 +27,6 @@ class UserPublicSerializer(serializers.ModelSerializer):
             'username',
             'role',
             'location',
-            'lat',
-            'lng',
-            'coords'
+            'coords',
+            'personal_description'
         )
