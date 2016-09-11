@@ -8,7 +8,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from .models import Account as User
-from .serializers import UserPublicSerializer
+from .serializers import UserSerializer
 
 
 class UsersFilter(filters.FilterSet):
@@ -32,7 +32,7 @@ class UsersFilter(filters.FilterSet):
 
 class UsersViewset(viewsets.ReadOnlyModelViewSet):
     permission_classes = (IsAuthenticated, )
-    serializer_class = UserPublicSerializer
+    serializer_class = UserSerializer
     filter_class = UsersFilter
 
     def get_queryset(self):

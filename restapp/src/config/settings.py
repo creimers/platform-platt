@@ -160,7 +160,7 @@ THUMBNAIL_PROCESSORS = (
 
 DJOSER = {
     'serializers': {
-        'user': 'apps.account.serializers.UserPrivateSerializer',
+        'user': 'apps.account.serializers.UserPublicSerializer',
     }
 }
 
