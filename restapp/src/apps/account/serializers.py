@@ -1,3 +1,5 @@
+from drf_extra_fields.geo_fields import PointField
+
 from rest_framework import serializers
 
 from .models import Account
@@ -16,6 +18,8 @@ class UserPrivateSerializer(serializers.ModelSerializer):
 
 
 class UserPublicSerializer(serializers.ModelSerializer):
+    coords = PointField()
+
     class Meta:
         model = Account
         fields = (
@@ -24,5 +28,6 @@ class UserPublicSerializer(serializers.ModelSerializer):
             'role',
             'location',
             'lat',
-            'lng'
+            'lng',
+            'coords'
         )

@@ -69,3 +69,28 @@ def test_users_list_filter_radius_GET_200(rest_client, users):
         coords = Point(float(user.get('lng')), float(user.get('lat')))
         dist = distance(point, coords)
         assert dist.km <= radius
+
+
+@pytest.mark.django_db
+def test_account_GET_200(rest_client, users):
+    rest_client.force_authenticate(user=users[0])
+    url = reverse('profile')
+    response = rest_client.get(url)
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_account_GET_200(rest_client, users):
+    user = users[0]
+    rest_client.force_authenticate(user=user)
+    url = reverse('profile')
+    user_update = {}
+    user_update['email'] = user.email
+    user_update['first_name'] = user.first_name
+    user_update['last_name'] = user.last_name
+    user_update['username'] = user.username
+    user_update['role'] = user.role
+    user_update['location'] = 'Pinneberg'
+    user_update['coords'] = {'latitude': 53.6463, 'longitude': 9.7961}
+    response = rest_client.put(url, user_update, format="json")
+    assert response.status_code == 200
