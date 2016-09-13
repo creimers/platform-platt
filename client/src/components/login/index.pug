@@ -1,0 +1,7 @@
+md-card(layout-margin)
+
+  p.error {{$ctrl.auth.loginErrorMessage}}
+  login-form-cmp(
+    on-submit="$ctrl.onLogin(model)"
+    is-fetching="$ctrl.auth.isFetching"
+    )

@@ -1,6 +1,6 @@
 import componentRouter from '@angular/router/angular1/angular_1_router'
 import Start from '../start'
-//import Login from '../login'
+import Login from '../login'
 //import Profile from '../profile'
 //import Users from '../users'
 
@@ -29,7 +29,7 @@ let rootCmp = {
   template: require('./index.pug')(),
   $routeConfig: [
     {path: '/', name: 'Index', component: 'startCmp', useAsDefault: true},
-    //{path: '/login', name: 'Login', component: 'loginCmp', useAsDefault: true},
+    {path: '/login', name: 'Login', component: 'loginCmp'},
     //{path: '/profile', name: 'Profile', component: 'profileCmp'},
     //{path: '/users', name: 'Users', component: 'usersCmp'},
   ]
@@ -45,6 +45,7 @@ function locationConfig($locationProvider){
 angular.module(MODULE_NAME, [
   'ngComponentRouter',
   Start,
+  Login
 ])
   .config(locationConfig)
   .component('rootCmp', rootCmp)

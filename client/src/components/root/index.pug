@@ -16,6 +16,11 @@ div(layout="column" layout-fill)
         //ng-click="$ctrl.onLogout()"
         //)
         //md-icon power_settings_new
+      md-button.md-icon-button(
+        ng-show="!$ctrl.auth.isAuthenticated"
+        ng-link="['Login']"
+        )
+        md-icon power_settings_new
 
   md-content
     main(layout="row" layout-align="center stretch")
