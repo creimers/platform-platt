@@ -1,4 +1,5 @@
 import componentRouter from '@angular/router/angular1/angular_1_router'
+import Start from '../start'
 //import Login from '../login'
 //import Profile from '../profile'
 //import Users from '../users'
@@ -43,6 +44,7 @@ function locationConfig($locationProvider){
 
 angular.module(MODULE_NAME, [
   'ngComponentRouter',
+  Start,
 ])
   .config(locationConfig)
   .component('rootCmp', rootCmp)

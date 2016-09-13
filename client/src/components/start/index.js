@@ -41,7 +41,7 @@ class StartCmpCtrl {
     //if(!this.profile.isFetched) {
       //this.getProfile()
     //}
-  }
+  //}
 }
 
 let startCmp = {
