@@ -1,3 +1,5 @@
+from django.db.models import Q
+
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
@@ -8,4 +10,9 @@ from .serializers import ContactSerializer
 class ContactViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated, )
     serializer_class = ContactSerializer
-    queryset = Contact.objects.all()
+
+    def get_queryset(self):
+        queryset = Contact.objects.filter(
+            Q(sender=self.request.user) | Q(receiver=self.request.user)
+        )
+        return queryset

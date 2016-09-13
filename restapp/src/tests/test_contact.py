@@ -51,3 +51,24 @@ def test_contact_POST_400(rest_client, users):
     url = reverse('contacts-list')
     response = rest_client.post(url, new_contact)
     assert response.status_code == 400
+
+
+def test_contact_GET_401(rest_client):
+    """
+    no unauthorized access
+    """
+    url = reverse('contacts-list')
+    response = rest_client.get(url)
+    assert response.status_code == 401
+
+
+@pytest.mark.django_db
+def test_contact_GET_200(rest_client, users):
+    """
+    get your contacts
+    """
+    sender = users[0]
+    rest_client.force_authenticate(user=sender)
+    url = reverse('contacts-list')
+    response = rest_client.get(url)
+    assert response.status_code == 200
