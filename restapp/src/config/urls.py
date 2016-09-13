@@ -36,10 +36,13 @@ from rest_framework_jwt.views import (
 )
 
 from apps.account.viewsets import UsersViewset
+from apps.contact.viewsets import ContactViewSet
 
 API_ROOT = DefaultRouter()
 API_ROOT.register(
     r'users', UsersViewset, base_name='users')
+API_ROOT.register(
+    r'contacts', ContactViewSet, base_name='contacts')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

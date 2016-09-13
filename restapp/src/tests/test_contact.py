@@ -9,6 +9,6 @@ def test_contact_POST_401(rest_client):
     """
     no unauthorized access
     """
-    url = reverse('contact-create')
-    response = rest_client.get(url)
+    url = reverse('contacts-list')
+    response = rest_client.post(url)
     assert response.status_code == 401
