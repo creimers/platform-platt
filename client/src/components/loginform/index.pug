@@ -1,0 +1,19 @@
+div(layout="column")
+  form(name="$ctrl.form")
+
+    formly-form(
+    form="$ctrl.form"
+    model='$ctrl.model'
+    fields='$ctrl.formFields'
+    )
+
+  div(layout="row" layout-align="end center")
+    md-progress-circular(
+      md-mode="indeterminate"
+      md-diameter="20"
+      ng-show="$ctrl.isFetching"
+      ).md-accent
+    md-button.md-raised.md-accent(
+      ng-click="$ctrl.onLogin()"
+      ng-disabled="$ctrl.form.$invalid || $ctrl.isFetching"
+      ) login
