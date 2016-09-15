@@ -26,8 +26,7 @@ class RootCtrl {
 
   $onInit() {
     let getProfile = () => {
-      console.log('get profile')
-      // call getProfile action
+      this.getProfile()
     }
     this.$scope.$on('login-success', getProfile)
   }
