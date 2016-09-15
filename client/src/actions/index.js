@@ -47,11 +47,11 @@ export function loginUser(userModel) {
       .then(response => response.json()
       .then(json => ({ json, response })))
       .then(({ json, response }) => {
-        if (!response.ok) {
-          dispatch(loginError(json.non_field_errors[0]))
+        if (response.ok) {
+          dispatch(loginSuccess(json))
         }
         else {
-          dispatch(loginSuccess(json))
+          dispatch(loginError(json.non_field_errors[0]))
         }
         return response
       })
@@ -69,10 +69,10 @@ function getProfileRequest () {
 }
 
 function getProfileSuccess(response) {
-  //localStorage.setItem('jwt_token', response.token)
   return {
     type: types.GET_PROFILE_SUCCESS,
-    isFetching: true
+    isFetching: true,
+    profile: response
   }
 }
 

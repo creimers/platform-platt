@@ -2,8 +2,9 @@ import componentRouter from '@angular/router/angular1/angular_1_router'
 
 import services from '../../services'
 
-import Start from '../start'
 import Login from '../login'
+import Profile from '../profile'
+import Start from '../start'
 
 import * as actions from '../../actions'
 
@@ -31,9 +32,10 @@ class RootCtrl {
     this.$scope.$on('login-success', getProfile)
   }
 
-  //onLogout() {
-    //this.logout(this.$router)
-  //}
+  onLogout() {
+    this.logoutUser()
+    this.$router.navigate(['Start'])
+  }
 
 }
 
@@ -43,7 +45,7 @@ let rootCmp = {
   $routeConfig: [
     {path: '/', name: 'Index', component: 'startCmp', useAsDefault: true},
     {path: '/login', name: 'Login', component: 'loginCmp'},
-    //{path: '/profile', name: 'Profile', component: 'profileCmp'},
+    {path: '/profile', name: 'Profile', component: 'profileCmp'},
     //{path: '/users', name: 'Users', component: 'usersCmp'},
   ]
 };
@@ -58,8 +60,9 @@ function locationConfig($locationProvider){
 angular.module(MODULE_NAME, [
   'ngComponentRouter',
   services,
+  Login,
+  Profile,
   Start,
-  Login
 ])
   .config(locationConfig)
   .component('rootCmp', rootCmp)

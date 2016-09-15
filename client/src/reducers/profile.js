@@ -7,7 +7,10 @@ export default function profile (
       last_name: '',
       email: '',
       username: '',
-      description: ''
+      personal_description: '',
+      coords: {},
+      location: '',
+      role: ''
     },
     isFetching: false,
   },

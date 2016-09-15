@@ -18,9 +18,11 @@ class LoginCtrl {
 
   onLogin(model) {
     this.loginUser(model)
-    .then(()=> {
-      this.$rootScope.$broadcast('login-success')
-      //this.$router.navigate(['Users'])
+    .then((resp)=> {
+      if(resp.ok) {
+        this.$rootScope.$broadcast('login-success')
+        this.$router.navigate(['Profile'])
+      }
     })
   }
 }
