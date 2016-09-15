@@ -4,8 +4,10 @@ import angularFormly from 'angular-formly';
 import angularFormlyMaterial from 'angular-formly-material';
 
 import angularRedux from 'ng-redux'
-//import rootReducer from './reducers'
+import rootReducer from './reducers'
 import thunk from 'redux-thunk'
+
+import config from './config'
 
 import rootCmp from './components/root';
 
@@ -19,19 +21,20 @@ function formlyConfig(formlyValidationMessages) {
 }
 
 /* @ngInject */
-//function reduxConfig($ngReduxProvider) {
-  //$ngReduxProvider.createStoreWith(rootReducer, [thunk]) 
-//}
+function reduxConfig($ngReduxProvider) {
+  $ngReduxProvider.createStoreWith(rootReducer, [thunk]) 
+}
 
 angular.module(MODULE_NAME, [
   angularMessages,
   angularFormly,
   angularFormlyMaterial,
-  //angularRedux,
+  angularRedux,
   theme,
+  config,
   rootCmp
 ])
-//.config(reduxConfig)
+.config(reduxConfig)
 .run(formlyConfig)
 
 export default MODULE_NAME;

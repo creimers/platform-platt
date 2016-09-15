@@ -1,10 +1,11 @@
 import componentRouter from '@angular/router/angular1/angular_1_router'
+
+import services from '../../services'
+
 import Start from '../start'
 import Login from '../login'
-//import Profile from '../profile'
-//import Users from '../users'
 
-//import * as actions from '../../actions/actionCreators'
+//import * as actions from '../../actions'
 
 import './index.scss';
 
@@ -19,9 +20,9 @@ class RootCtrl {
     //return state
   //}
 
-  onLogout() {
+  //onLogout() {
     //this.logout(this.$router)
-  }
+  //}
 }
 
 let rootCmp = {
@@ -44,6 +45,7 @@ function locationConfig($locationProvider){
 
 angular.module(MODULE_NAME, [
   'ngComponentRouter',
+  services,
   Start,
   Login
 ])
