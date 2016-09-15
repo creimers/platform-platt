@@ -3,9 +3,11 @@ import * as actions from '../../actions'
 
 class LoginCtrl {
   /* @ngInject */
-  constructor($ngRedux, $scope) {
+  constructor($rootScope, $ngRedux, $scope) {
     const unsubscribe = $ngRedux.connect(this._mapStateToThis, actions)(this)
     $scope.$on('$destroy', unsubscribe);
+
+    this.$rootScope = $rootScope
   }
 
   _mapStateToThis(state) {
@@ -16,6 +18,10 @@ class LoginCtrl {
 
   onLogin(model) {
     this.loginUser(model)
+    .then(()=> {
+      this.$rootScope.$broadcast('login-success')
+      //this.$router.navigate(['Users'])
+    })
   }
 }
 

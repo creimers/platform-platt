@@ -5,24 +5,37 @@ import services from '../../services'
 import Start from '../start'
 import Login from '../login'
 
-//import * as actions from '../../actions'
+import * as actions from '../../actions'
 
 import './index.scss';
 
 class RootCtrl {
   /* @ngInject */
-  //constructor($rootRouter, $ngRedux, $scope) {
-    //this.$router = $rootRouter
-    //const unsubscribe = $ngRedux.connect(this._mapStateToThis, actions)(this)
-  //}
+  constructor($rootRouter, $ngRedux, $scope) {
+    this.$router = $rootRouter
 
-  //_mapStateToThis(state) {
-    //return state
-  //}
+    const unsubscribe = $ngRedux.connect(this._mapStateToThis, actions)(this)
+    $scope.$on('$destroy', unsubscribe);
+    this.$scope = $scope
+  }
+
+
+  _mapStateToThis(state) {
+    return state
+  }
+
+  $onInit() {
+    let getProfile = () => {
+      console.log('get profile')
+      // call getProfile action
+    }
+    this.$scope.$on('login-success', getProfile)
+  }
 
   //onLogout() {
     //this.logout(this.$router)
   //}
+
 }
 
 let rootCmp = {
