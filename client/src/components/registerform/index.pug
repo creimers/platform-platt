@@ -7,6 +7,11 @@ div(layout="column")
     fields='$ctrl.formFields'
     )
 
+    google-autocomplete-cmp(
+      on-select="$ctrl.setLocation(model)"
+      placeholder="Wohnort *"
+      )
+
   div(layout="row" layout-align="end center")
     md-progress-circular(
       md-mode="indeterminate"
@@ -15,5 +20,5 @@ div(layout="column")
       ).md-accent
     md-button.md-raised.md-accent(
       ng-click="$ctrl.onLogin()"
-      ng-disabled="$ctrl.form.$invalid || $ctrl.isFetching"
-      ) login
+      ng-disabled="$ctrl.form.$invalid || $ctrl.isFetching || !$ctrl.model.location"
+      ) registrieren

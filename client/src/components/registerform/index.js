@@ -1,6 +1,10 @@
+import googleAutocomplete from '../google-autocomplete'
+
 class RegisterFormCtrl {
   /* @ngInject */
-  constructor() {
+  constructor($timeout) {
+    this.$timeout = $timeout
+
     this.model = {}
     this.form = {}
     this.options = {}
@@ -32,6 +36,17 @@ class RegisterFormCtrl {
   onRegister() {
     this.onSubmit({model: this.model})
   }
+
+  setLocation(model) {
+    let updateModel = (model) => {
+      this.model.location = model.location.city.name
+      this.model.coords = {
+        latitude: model.location.lat,
+        longitude: model.location.lon
+      }
+    } 
+    this.$timeout(updateModel(model))
+  }
 }
 
 let registerFormCmp = {
@@ -47,8 +62,8 @@ const MODULE_NAME = 'registerFormCmp';
 
 import './index.scss'
 
-angular.module(MODULE_NAME, [ ])
+angular.module(MODULE_NAME, [googleAutocomplete])
   .component('registerFormCmp', registerFormCmp)
-  .controller('RegisterFormCtrl', RegisterFormCtrl);
+  .controller('RegisterFormCtrl', RegisterFormCtrl)
 
-export default MODULE_NAME;
+export default MODULE_NAME
