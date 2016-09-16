@@ -1,5 +1,5 @@
 import RegisterForm from '../registerform'
-import * as actions from '../../actions'
+import * as actions from '../../actions/register'
 
 class RegisterCtrl {
   /* @ngInject */
@@ -10,7 +10,8 @@ class RegisterCtrl {
 
   _mapStateToThis(state) {
     return {
-      auth: state.auth
+      auth: state.auth,
+      register: state.register,
     }
   }
 

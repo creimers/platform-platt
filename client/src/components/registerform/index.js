@@ -1,4 +1,5 @@
 import googleAutocomplete from '../google-autocomplete'
+import userRole from '../user-role'
 
 class RegisterFormCtrl {
   /* @ngInject */
@@ -47,6 +48,13 @@ class RegisterFormCtrl {
     } 
     this.$timeout(updateModel(model))
   }
+
+  setRole(role) {
+    let updateModel = (role) => {
+      this.model.role = role
+    }
+    this.$timeout(updateModel(role))
+  }
 }
 
 let registerFormCmp = {
@@ -62,7 +70,7 @@ const MODULE_NAME = 'registerFormCmp';
 
 import './index.scss'
 
-angular.module(MODULE_NAME, [googleAutocomplete])
+angular.module(MODULE_NAME, [googleAutocomplete, userRole])
   .component('registerFormCmp', registerFormCmp)
   .controller('RegisterFormCtrl', RegisterFormCtrl)
 

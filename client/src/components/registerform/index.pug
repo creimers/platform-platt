@@ -1,4 +1,6 @@
+pre {{$ctrl.model | json}}
 div(layout="column")
+  user-role-cmp(on-select="$ctrl.setRole(role)")
   form(name="$ctrl.form")
 
     formly-form(
@@ -19,6 +21,6 @@ div(layout="column")
       ng-show="$ctrl.isFetching"
       ).md-accent
     md-button.md-raised.md-accent(
-      ng-click="$ctrl.onLogin()"
+      ng-click="$ctrl.onRegister()"
       ng-disabled="$ctrl.form.$invalid || $ctrl.isFetching || !$ctrl.model.location"
       ) registrieren

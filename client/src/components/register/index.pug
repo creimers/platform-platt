@@ -5,5 +5,5 @@ md-card(layout-margin)
   p.error {{$ctrl.auth.loginErrorMessage}}
   register-form-cmp(
     on-submit="$ctrl.onRegister(model)"
-    is-fetching="$ctrl.auth.isFetching"
+    is-fetching="$ctrl.register.isFetching"
     )

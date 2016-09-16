@@ -1,0 +1,11 @@
+div(layout="row" layout-align="space between")
+  div(
+    ng-class="{'active': $ctrl.role==='learn'}"
+    ng-click="$ctrl.selectRole('learn')"
+    )
+    p ich will platt lernen
+  div(
+    ng-class="{'active': $ctrl.role==='teach'}"
+    ng-click="$ctrl.selectRole('teach')"
+    )
+    p ik schnack platt
