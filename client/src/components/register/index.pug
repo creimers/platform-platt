@@ -2,7 +2,7 @@ h1.md-display-3 Registrieren
 
 md-card(layout-margin)
 
-  p.error {{$ctrl.auth.loginErrorMessage}}
+  p.error-message {{$ctrl.register.registerErrorMessage}}
   register-form-cmp(
     on-submit="$ctrl.onRegister(model)"
     is-fetching="$ctrl.register.isFetching"

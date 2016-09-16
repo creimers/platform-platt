@@ -2,7 +2,7 @@ h1.md-display-3 Login
 
 md-card(layout-margin)
 
-  p.error {{$ctrl.auth.loginErrorMessage}}
+  p.error-message {{$ctrl.auth.loginErrorMessage}}
   login-form-cmp(
     on-submit="$ctrl.onLogin(model)"
     is-fetching="$ctrl.auth.isFetching"

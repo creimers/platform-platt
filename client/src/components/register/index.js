@@ -3,9 +3,11 @@ import * as actions from '../../actions/register'
 
 class RegisterCtrl {
   /* @ngInject */
-  constructor($ngRedux, $scope) {
+  constructor($ngRedux, $scope, $mdToast) {
     const unsubscribe = $ngRedux.connect(this._mapStateToThis, actions)(this)
     $scope.$on('$destroy', unsubscribe);
+
+    this.$mdToast = $mdToast
   }
 
   _mapStateToThis(state) {
@@ -19,6 +21,7 @@ class RegisterCtrl {
     this.registerUser(model)
     .then((resp)=> {
       if(resp.ok) {
+        this.$mdToast.showSimple('Das hat geklappt. Du kannst dich anmelden.')
         this.$router.navigate(['Login'])
       }
     })

@@ -44,7 +44,7 @@ export function registerUser(userModel) {
           dispatch(registerSuccess(json))
         }
         else {
-          dispatch(registerError(json.non_field_errors[0]))
+          dispatch(registerError(json.email[0]))
         }
         return response
       })
