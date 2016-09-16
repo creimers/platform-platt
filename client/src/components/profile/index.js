@@ -42,7 +42,7 @@ class ProfileCtrl extends viewComponentCtrl{
   * gets the profile if it has not been fetched
   **/
   _loadProfile() {
-    if(!this.profile.email && !this.profile.isFetching && this.auth.isAuthenticated) {
+    if(!this.profile.profile.email && !this.profile.isFetching && this.auth.isAuthenticated) {
       this.getProfile()
     }
   }
