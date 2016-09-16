@@ -1,27 +1,32 @@
+import viewComponentCtrl from '../../controllers/viewcomponent'
 import ProfileForm from '../profileform'
 import * as actions from '../../actions'
 
 
 /** The controller for the profile component. */
-class ProfileCtrl {
+class ProfileCtrl extends viewComponentCtrl{
   /**
   * constructor of the ProfileCtrl
   * @param {object} $ngRedux
   * @param {object} $scope
   **/
   /* @ngInject */
-  constructor($ngRedux, $scope) {
-    const unsubscribe = $ngRedux.connect(this._mapStateToThis, actions)(this)
-    $scope.$on('$destroy', unsubscribe);
+  constructor($q, jwtHelper, $ngRedux, $scope) {
+    super($q, jwtHelper, $ngRedux, $scope)
+
+    this.requiresAuthentication = true
   }
 
-  $onInit() {
-    this._loadProfile()
+  $routerOnActivate(next, prev) {
+    super.$routerOnActivate(next, prev).then(
+      () => this._loadProfile()
+    )
   }
 
   _mapStateToThis(state) {
     return {
       profile: state.profile,
+      auth: state.auth,
     }
   }
 
@@ -37,7 +42,7 @@ class ProfileCtrl {
   * gets the profile if it has not been fetched
   **/
   _loadProfile() {
-    if(!this.profile.email && !this.profile.isFetching) {
+    if(!this.profile.email && !this.profile.isFetching && this.auth.isAuthenticated) {
       this.getProfile()
     }
   }
@@ -45,7 +50,10 @@ class ProfileCtrl {
 
 let profileCmp = {
   controller: 'ProfileCtrl',
-  template: require('./index.pug')()
+  template: require('./index.pug')(),
+  bindings: {
+    $router: '<',
+  }
 };
 const MODULE_NAME = 'profileCmp';
 

@@ -33,11 +33,18 @@ export default function auth(
         loginErrorMessage: action.loginErrorMessage
       })
 
-    //case types.LOGOUT:
-      //return Object.assign({}, state, {
-        //isFetching: false,
-        //isAuthenticated: false,
-      //})
+    case types.REAUTHENTICATE_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: true,
+      })
+
+    case types.LOGOUT:
+      return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: false,
+      })
+
     default:
       return state
   }

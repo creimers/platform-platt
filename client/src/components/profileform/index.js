@@ -57,6 +57,15 @@ class ProfileFormCtrl {
           required: true,
         }
       },
+      {
+        key: 'personal_description',
+        type: 'textarea',
+        templateOptions: {
+          grow: true,
+          rows: 5,
+          label: 'Kurzvorstellung'
+        }
+      }
     ]
 
     this.colorOptions = {format: 'hex'}

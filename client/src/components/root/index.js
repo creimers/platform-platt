@@ -32,7 +32,7 @@ class RootCtrl {
     this.$scope.$on('login-success', getProfile)
   }
 
-  onLogout() {
+  handleLogout() {
     this.logoutUser()
     this.$router.navigate(['Start'])
   }
@@ -43,7 +43,7 @@ let rootCmp = {
   controller: 'RootCtrl',
   template: require('./index.pug')(),
   $routeConfig: [
-    {path: '/', name: 'Index', component: 'startCmp', useAsDefault: true},
+    {path: '/', name: 'Start', component: 'startCmp', useAsDefault: true},
     {path: '/login', name: 'Login', component: 'loginCmp'},
     {path: '/profile', name: 'Profile', component: 'profileCmp'},
     //{path: '/users', name: 'Users', component: 'usersCmp'},

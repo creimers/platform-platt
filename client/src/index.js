@@ -2,6 +2,7 @@ import angular from 'angular';
 import angularMessages from 'angular-messages';
 import angularFormly from 'angular-formly';
 import angularFormlyMaterial from 'angular-formly-material';
+import angularjwt from 'angular-jwt'
 
 import angularRedux from 'ng-redux'
 import rootReducer from './reducers'
@@ -30,6 +31,7 @@ angular.module(MODULE_NAME, [
   angularFormly,
   angularFormlyMaterial,
   angularRedux,
+  angularjwt,
   theme,
   config,
   rootCmp

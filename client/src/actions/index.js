@@ -16,8 +16,8 @@ function loginSuccess(response) {
   localStorage.setItem('jwt_token', response.token)
   return {
     type: types.LOGIN_SUCCESS,
-    isFetching: true,
-    isAuthenticated: false,
+    isFetching: false,
+    isAuthenticated: true,
     loginErrorMessage: '',
   }
 }
@@ -59,6 +59,70 @@ export function loginUser(userModel) {
   }
 }
 
+export function logoutUser() {
+  localStorage.removeItem('jwt_token')
+  return {
+    type: types.LOGOUT,
+    isFetching: false,
+    isAuthenticated: false,
+    loginErrorMessage: '',
+  }
+}
+
+function reauthenticateRequest() {
+  return {
+    type: types.REAUTHENTICATE_REQUEST,
+    isFetching: true,
+    isAuthenticated: false,
+  }
+}
+
+export function reauthenticateSuccess(response) {
+  localStorage.setItem('jwt_token', response.token)
+  return {
+    type: types.REAUTHENTICATE_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+  }
+}
+
+function reauthenticateError() {
+  return {
+    type: types.REAUTHENTICATE_ERROR,
+    isFetching: false,
+    isAuthenticated: false,
+  }
+}
+
+export function reauthenticate() {
+  return dispatch => {
+    dispatch(reauthenticateRequest())
+
+    var token = localStorage.getItem('jwt_token')
+    var config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: "POST",
+      body: JSON.stringify({token: token})
+    }
+
+    return fetch(BASE_URL + 'reauthenticate/', config)
+      .then(response => response.json()
+      .then(json => ({ json, response })))
+      .then(({ json, response }) => {
+        if (response.ok) {
+          dispatch(reauthenticateSuccess(json))
+        }
+        else {
+          dispatch(reauthenticateError(json.non_field_errors[0]))
+        }
+        return response
+      })
+      .catch(err => dispatch(reauthenticateError(err)))
+  }
+}
+
 // PROFILE
 
 function getProfileRequest () {
@@ -76,7 +140,7 @@ function getProfileSuccess(response) {
   }
 }
 
-function geProfileError(error) {
+function getProfileError(error) {
   return {
     type: types.GET_PROFILE_ERROR,
     isFetching: false,
