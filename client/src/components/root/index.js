@@ -4,6 +4,7 @@ import services from '../../services'
 
 import Login from '../login'
 import Profile from '../profile'
+import Register from '../register'
 import Start from '../start'
 
 import * as actions from '../../actions'
@@ -44,8 +45,9 @@ let rootCmp = {
   template: require('./index.pug')(),
   $routeConfig: [
     {path: '/', name: 'Start', component: 'startCmp', useAsDefault: true},
+    {path: '/registrieren', name: 'Register', component: 'registerCmp'},
     {path: '/login', name: 'Login', component: 'loginCmp'},
-    {path: '/profile', name: 'Profile', component: 'profileCmp'},
+    {path: '/profil', name: 'Profile', component: 'profileCmp'},
     //{path: '/users', name: 'Users', component: 'usersCmp'},
   ]
 };
@@ -62,6 +64,7 @@ angular.module(MODULE_NAME, [
   services,
   Login,
   Profile,
+  Register,
   Start,
 ])
   .config(locationConfig)

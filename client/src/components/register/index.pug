@@ -1,9 +1,9 @@
-h1.md-display-3 Login
+h1.md-display-3 Registrieren
 
 md-card(layout-margin)
 
   p.error {{$ctrl.auth.loginErrorMessage}}
-  login-form-cmp(
-    on-submit="$ctrl.onLogin(model)"
+  register-form-cmp(
+    on-submit="$ctrl.onRegister(model)"
     is-fetching="$ctrl.auth.isFetching"
     )

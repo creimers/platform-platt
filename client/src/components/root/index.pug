@@ -1,21 +1,16 @@
 div(layout="column" layout-fill)
   md-toolbar.md-whiteframe-2dp
     .md-toolbar-tools
-      h2 plattform-platt.de
+      h2(ng-link="['Start']") plattform-platt.de
       span(flex)
-      //md-button(
-        //ng-show="$ctrl.auth.isAuthenticated"
-        //ng-link="['Profile']"
-        //) edit profile
+      md-button(
+        ng-show="$ctrl.auth.isAuthenticated"
+        ng-link="['Profile']"
+        ) Profil
       //md-button(
         //ng-show="$ctrl.auth.isAuthenticated"
         //ng-link="['Users']"
         //) manage users
-      //md-button.md-icon-button(
-        //ng-show="$ctrl.auth.isAuthenticated"
-        //ng-click="$ctrl.onLogout()"
-        //)
-        //md-icon power_settings_new
 
       md-button.md-icon-button(
         ng-show="!$ctrl.auth.isAuthenticated"
