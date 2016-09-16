@@ -8,6 +8,11 @@ form(
   fields='$ctrl.formFields'
   )
 
+  google-autocomplete-cmp(
+    on-select="$ctrl.setLocation(model)"
+    placeholder="Neuer Wohnort *"
+    )
+
 div(layout="row" layout-align="end center")
 
   md-progress-circular(
@@ -18,5 +23,5 @@ div(layout="row" layout-align="end center")
 
   md-button.md-raised.md-accent(
     ng-click="$ctrl.handleOnSave()"
-    ng-disabled="$ctrl.form.$invalid || $ctrl.isFetching || $ctrl.form.$pristine"
+    ng-disabled="$ctrl.form.$invalid || $ctrl.isFetching"
     ) save

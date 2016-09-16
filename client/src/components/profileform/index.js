@@ -1,10 +1,6 @@
-/** The controller for the profile form component. */
+import googleAutocomplete from '../google-autocomplete'
+
 class ProfileFormCtrl {
-  /**
-  * constructor of the RootCtrl
-  * @param {object} $timeout
-  * @param {object} colorSrv
-  **/
   /* @ngInject */
   constructor($timeout) {
     this.$timeout = $timeout
@@ -52,6 +48,7 @@ class ProfileFormCtrl {
         key: 'location',
         type: 'input',
         templateOptions: {
+          disabled: true,
           type: 'text',
           label: 'Ort',
           required: true,
@@ -71,26 +68,27 @@ class ProfileFormCtrl {
     this.colorOptions = {format: 'hex'}
   }
 
-  /**
-  * profile setter. copies profile object to this.model
-  * @param {object} value - the profile binding
-  **/
   set profile(value) {
     this.model = angular.copy(value)
   }
 
-  /**
-  * profile getter
-  **/
   get profile() {
     return this.model
   }
 
-  /**
-  * deligates the profile to the onSave binding
-  **/
   handleOnSave() {
     this.onSave({model: this.model.profile})
+  }
+
+  setLocation(model) {
+    let updateModel = (model) => {
+      this.model.profile.location = model.location.city.name
+      this.model.profile.coords = {
+        latitude: model.location.lat,
+        longitude: model.location.lon
+      }
+    } 
+    this.$timeout(updateModel(model))
   }
 
 }
@@ -108,7 +106,7 @@ const MODULE_NAME = 'profileFormCmp';
 
 import './index.scss'
 
-angular.module(MODULE_NAME, [  ])
+angular.module(MODULE_NAME, [googleAutocomplete])
   .component('profileFormCmp', profileFormCmp)
   .controller('ProfileFormCtrl', ProfileFormCtrl);
 

@@ -31,9 +31,6 @@ class RegisterFormCtrl {
     ]
   }
 
-  /**
-  * deligates the user credentials to the register action
-  **/
   onRegister() {
     this.onSubmit({model: this.model})
   }
