@@ -1,18 +1,14 @@
 import loginFormCmp from '../loginform'
-//import * as actions from '../../actions/actionCreators'
+import * as actions from '../../actions'
 
-/** The controller for the login component. */
 class LoginCtrl {
-  /**
-  * constructor of the LoginCtrl
-  * @param {object} $ngRedux
-  * @param {object} $scope
-  **/
   /* @ngInject */
-  //constructor($ngRedux, $scope) {
-    //const unsubscribe = $ngRedux.connect(this._mapStateToThis, actions)(this)
-    //$scope.$on('$destroy', unsubscribe);
-  //}
+  constructor($rootScope, $ngRedux, $scope) {
+    const unsubscribe = $ngRedux.connect(this._mapStateToThis, actions)(this)
+    $scope.$on('$destroy', unsubscribe);
+
+    this.$rootScope = $rootScope
+  }
 
   _mapStateToThis(state) {
     return {
@@ -20,12 +16,14 @@ class LoginCtrl {
     }
   }
 
-  /**
-  * deligates the user credentials to the login action
-  * @param {object} model - the user's credentials: username, password
-  **/
   onLogin(model) {
-    this.login(model, this.$router)
+    this.loginUser(model)
+    .then((resp)=> {
+      if(resp.ok) {
+        this.$rootScope.$broadcast('login-success')
+        this.$router.navigate(['Profile'])
+      }
+    })
   }
 }
 

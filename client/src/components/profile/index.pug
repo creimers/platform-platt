@@ -1,0 +1,17 @@
+div(layout="row" layout-align="center center").profile
+
+  div(layout="column" flex)
+    h1.md-display-3 Profil
+
+    div(layout="row" layout-align="center center")
+      md-progress-circular(
+        md-mode="indeterminate"
+        ng-show="$ctrl.profile.isFetching"
+        ).md-accent
+
+    profile-form-cmp(
+      ng-show="!$ctrl.profile.isFetching"
+      on-save="$ctrl.onSave(model)"
+      profile="$ctrl.profile"
+      is-fetching="$ctrl.profile.isFetching"
+      )

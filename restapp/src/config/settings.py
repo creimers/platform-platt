@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -159,8 +160,8 @@ THUMBNAIL_PROCESSORS = (
 )
 
 DJOSER = {
-    'serializers': {
-        'user': 'apps.account.serializers.UserPublicSerializer',
+    'SERIALIZERS': {
+        'user': 'apps.account.serializers.UserSerializer',
     }
 }
 
@@ -172,4 +173,10 @@ REST_FRAMEWORK = {
       'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
       ),
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
+}
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),  # 7 Days
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=6),  # After this time you need to reauthenticate
 }
