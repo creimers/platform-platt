@@ -1,10 +1,10 @@
 import RegisterForm from '../registerform'
-import * as actions from '../../actions/register'
+import * as registerActions from '../../actions/register'
 
 class RegisterCtrl {
   /* @ngInject */
   constructor($ngRedux, $scope, $mdToast) {
-    const unsubscribe = $ngRedux.connect(this._mapStateToThis, actions)(this)
+    const unsubscribe = $ngRedux.connect(this._mapStateToThis, registerActions)(this)
     $scope.$on('$destroy', unsubscribe);
 
     this.$mdToast = $mdToast

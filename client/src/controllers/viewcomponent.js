@@ -1,12 +1,13 @@
-import * as actions from '../actions'
+import * as authActions from '../actions/auth'
 
 export default class viewComponentCtrl {
   /* @ngInject */
-  constructor($q, jwtHelper, $ngRedux, $scope) {
+  constructor($q, jwtHelper, $ngRedux, $scope, $mdToast) {
     this.$q = $q
     this.jwtHelper = jwtHelper
+    this.$mdToast = $mdToast
 
-    const unsubscribe = $ngRedux.connect(this._mapStateToThis, actions)(this)
+    const unsubscribe = $ngRedux.connect(this._mapStateToThis, authActions)(this)
     $scope.$on('$destroy', unsubscribe);
   }
 

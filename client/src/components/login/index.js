@@ -1,10 +1,10 @@
 import loginFormCmp from '../loginform'
-import * as actions from '../../actions'
+import * as authActions from '../../actions/auth'
 
 class LoginCtrl {
   /* @ngInject */
   constructor($rootScope, $ngRedux, $scope, $mdToast) {
-    const unsubscribe = $ngRedux.connect(this._mapStateToThis, actions)(this)
+    const unsubscribe = $ngRedux.connect(this._mapStateToThis, authActions)(this)
     $scope.$on('$destroy', unsubscribe);
 
     this.$rootScope = $rootScope

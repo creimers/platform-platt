@@ -13,7 +13,7 @@ export default function profile (
       role: ''
     },
     isFetching: false,
-    error: ''
+    updateProfileError: ''
   },
   action) {
 
@@ -40,11 +40,23 @@ export default function profile (
           isFetching: true,
         })
 
+      case types.UPDATE_PROFILE_ERROR:
+        return Object.assign({}, state, {
+          isFetching: true,
+          updateProfileError: action.error
+        })
+
       case types.UPDATE_PROFILE_SUCCESS:
         return Object.assign({}, state, {
           isFetching: false,
           profile: action.profile
         })
+
+    case types.LOGOUT:
+      return Object.assign({}, state, {
+        isFetching: false,
+        profile: {}
+      })
 
       default:
         return state

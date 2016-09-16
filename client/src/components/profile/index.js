@@ -1,18 +1,15 @@
 import viewComponentCtrl from '../../controllers/viewcomponent'
 import ProfileForm from '../profileform'
-import * as actions from '../../actions'
+import * as profileActions from '../../actions/profile'
 
 
-/** The controller for the profile component. */
 class ProfileCtrl extends viewComponentCtrl{
-  /**
-  * constructor of the ProfileCtrl
-  * @param {object} $ngRedux
-  * @param {object} $scope
-  **/
   /* @ngInject */
-  constructor($q, jwtHelper, $ngRedux, $scope) {
-    super($q, jwtHelper, $ngRedux, $scope)
+  constructor($q, jwtHelper, $ngRedux, $scope, $mdToast) {
+    super($q, jwtHelper, $ngRedux, $scope, $mdToast)
+
+    const unsubscribe = $ngRedux.connect(this._mapStateToThis, profileActions)(this)
+    $scope.$on('$destroy', unsubscribe);
 
     this.requiresAuthentication = true
   }
@@ -30,17 +27,14 @@ class ProfileCtrl extends viewComponentCtrl{
     }
   }
 
-  /**
-  * deligates the profile to the update profile action
-  * @param {object} model - the profile
-  **/
   onSave(model) {
-    this.updateProfile(model)
+    this.updateProfile(model).then(resp => {
+      if(resp.ok) {
+        this.$mdToast.showSimple('Profil aktualisiert.')
+      }
+    })
   }
 
-  /**
-  * gets the profile if it has not been fetched
-  **/
   _loadProfile() {
     if(!this.profile.profile.email && !this.profile.isFetching && this.auth.isAuthenticated) {
       this.getProfile()

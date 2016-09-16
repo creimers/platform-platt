@@ -7,7 +7,8 @@ import Profile from '../profile'
 import Register from '../register'
 import Start from '../start'
 
-import * as actions from '../../actions'
+import * as authActions from '../../actions/auth'
+import * as profileActions from '../../actions/profile'
 
 import './index.scss';
 
@@ -16,14 +17,21 @@ class RootCtrl {
   constructor($rootRouter, $ngRedux, $scope) {
     this.$router = $rootRouter
 
-    const unsubscribe = $ngRedux.connect(this._mapStateToThis, actions)(this)
-    $scope.$on('$destroy', unsubscribe);
+    const unsubscribeAuth = $ngRedux.connect(this._mapToThis, authActions)(this)
+    $scope.$on('$destroy', unsubscribeAuth);
+
+    const unsubscribeProfile = $ngRedux.connect(this._mapToThis, profileActions)(this)
+    $scope.$on('$destroy', unsubscribeProfile);
+
     this.$scope = $scope
   }
 
 
-  _mapStateToThis(state) {
-    return state
+  _mapToThis(state) {
+    return {
+      auth: state.auth,
+      profile: state.profile
+    }
   }
 
   $onInit() {

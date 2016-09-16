@@ -7,15 +7,19 @@ class googleAutocompleteCmpCtrl {
   }
 
   $onInit() {
-    loadGoogleMapsAPI({
-        key: 'AIzaSyBon5CXrbuZJcsyGCAuZJcp4HzQi81eFoQ',
-        //v: '3.20', //defaults to latest 3.X anyhow
-        libraries: 'weather,geometry,visualization,places',
-        language: 'de'
-    }).then(api => {
-      console.log(api)
-      this._initializeAutocomplete()
-    })
+    try{
+      google
+    }
+    catch(err){
+      loadGoogleMapsAPI({
+          key: 'AIzaSyBon5CXrbuZJcsyGCAuZJcp4HzQi81eFoQ',
+          //v: '3.20', //defaults to latest 3.X anyhow
+          libraries: 'weather,geometry,visualization,places',
+          language: 'de'
+      }).then(() => {
+        this._initializeAutocomplete()
+      })
+    }
   }
 
   _initializeAutocomplete() {

@@ -27,4 +27,5 @@ div(layout="column" layout-fill)
   md-content
     main(layout="row" layout-align="center stretch")
       div(layout="column" flex="50")
+        pre {{$ctrl.auth | json}}
         ng-outlet
