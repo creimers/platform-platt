@@ -1,3 +1,5 @@
+from djoser.serializers import UserRegistrationSerializer
+
 from drf_extra_fields.geo_fields import PointField
 
 from rest_framework import serializers
@@ -19,4 +21,18 @@ class UserSerializer(serializers.ModelSerializer):
             'location',
             'coords',
             'personal_description'
+        )
+
+
+class UserRegisterSerializer(UserRegistrationSerializer):
+    coords = PointField()
+
+    class Meta:
+        model = Account
+        fields = (
+            'email',
+            'role',
+            'location',
+            'coords',
+            'password'
         )

@@ -3,7 +3,7 @@ from django.contrib.gis.db import models
 
 
 class AccountManager(BaseUserManager):
-    def create_user(self, email, password=None, **kwars):
+    def create_user(self, email, password=None, **kwargs):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -13,6 +13,7 @@ class AccountManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
+            **kwargs
         )
 
         user.set_password(password)
