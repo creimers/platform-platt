@@ -16,3 +16,7 @@ class ContactViewSet(viewsets.ModelViewSet):
             Q(sender=self.request.user) | Q(receiver=self.request.user)
         )
         return queryset
+
+    def create(self, request, *args, **kwargs):
+        request.data['sender'] = request.user.id
+        return super(ContactViewSet, self).create(request, *args, **kwargs)

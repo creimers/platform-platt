@@ -1,5 +1,6 @@
 import pytest
 
+from django.core import mail
 from django.core.urlresolvers import reverse
 
 from .fixtures import rest_client, users
@@ -23,7 +24,6 @@ def test_contact_POST_201(rest_client, users):
     receiver = users[1]
 
     new_contact = {
-        'sender': sender.id,
         'receiver': receiver.id,
         'message': "Justo Inceptos Porta Bibendum"
     }
@@ -32,6 +32,7 @@ def test_contact_POST_201(rest_client, users):
     url = reverse('contacts-list')
     response = rest_client.post(url, new_contact)
     assert response.status_code == 201
+    assert len(mail.outbox) == 1
 
 
 @pytest.mark.django_db

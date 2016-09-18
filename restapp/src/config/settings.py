@@ -67,7 +67,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join('src/templates'), ],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -182,3 +182,5 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),  # 7 Days
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=6),  # After this time you need to reauthenticate
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
