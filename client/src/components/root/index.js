@@ -59,7 +59,7 @@ let rootCmp = {
     {path: '/registrieren', name: 'Register', component: 'registerCmp'},
     {path: '/login', name: 'Login', component: 'loginCmp'},
     {path: '/profil', name: 'Profile', component: 'profileCmp'},
-    {path: '/users', name: 'Users', component: 'usersCmp'},
+    {path: '/finden', name: 'Users', component: 'usersCmp'},
   ]
 };
 

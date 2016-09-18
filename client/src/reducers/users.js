@@ -28,6 +28,24 @@ export default function users (
           getUsersError: action.error
         })
 
+      case types.CONACT_USER_REQUEST:
+        return Object.assign({}, state, {
+          isFetching: true,
+          contactUserError: ''
+        })
+
+      case types.CONACT_USER_SUCCESS:
+        return Object.assign({}, state, {
+          isFetching: false,
+          contactUserError: ''
+        })
+
+      case types.CONACT_USER_ERROR:
+        return Object.assign({}, state, {
+          isFetching: false,
+          contactUserError: action.error
+        })
+
       default:
         return state
     }

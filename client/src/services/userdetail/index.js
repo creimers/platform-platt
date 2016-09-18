@@ -1,10 +1,21 @@
+import * as usersActions from '../../actions/users'
+
 class userDetailSrvCtrl {
   /* @ngInject */
-  constructor($mdDialog) {
+  constructor($mdDialog, $ngRedux, $scope) {
+    const unsubscribe = $ngRedux.connect(this._mapStateToThis, usersActions)(this)
+    $scope.$on('$destroy', unsubscribe);
+
     this.$mdDialog = $mdDialog;
 
     this.contactForm = false
     this.contactText = ''
+  }
+
+  _mapStateToThis(state) {
+    return {
+      users: state.users
+    }
   }
 
   cancel() {
@@ -12,7 +23,16 @@ class userDetailSrvCtrl {
   }
 
   submitContact() {
-    console.log('contact')
+    this.contactUser(this.user.id, this.contactText).then(
+      (resp)=> {
+        if(resp && resp.ok) {
+          this.$mdDialog.hide() 
+        }
+        else {
+          this.$mdDialog.cancel()
+        }
+      }
+    )
   }
 
   toggleContactForm() {

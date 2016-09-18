@@ -47,5 +47,5 @@ md-dialog(
     md-button.md-raised.md-accent(
       ng-click="$ctrl.submitContact()"
       ng-show="$ctrl.contactForm"
-      ng-disabled="$ctrl.isFetching || !$ctrl.contactText"
+      ng-disabled="$ctrl.users.isFetching || !$ctrl.contactText"
       ) absenden
