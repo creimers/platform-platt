@@ -42,7 +42,11 @@ class UsersCtrl extends viewComponentCtrl{
   openUserModal(user) {
     this.userDetailSrv.openModal(user).then(
       () => this.$mdToast.showSimple('Anfrage gesendet!'),
-      () => this.$mdToast.showSimple('Fehler! Anfrage nicht gesendet!')
+      (err) => {
+        if(err) {
+          this.$mdToast.showSimple('Fehler! Anfrage nicht gesendet!')
+        }
+      }
     )
   }
 

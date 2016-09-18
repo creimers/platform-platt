@@ -94,7 +94,7 @@ export function contactUser(userId, message) {
       body: JSON.stringify({receiver: userId, message: message})
     }
 
-    let url = BASE_URL + 'contact/'
+    let url = BASE_URL + 'contacts/'
 
     return fetch(url, config)
       .then(response => response.json()

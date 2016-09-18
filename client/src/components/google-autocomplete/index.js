@@ -2,28 +2,37 @@ import loadGoogleMapsAPI from 'load-google-maps-api'
 
 class googleAutocompleteCmpCtrl {
   /* @ngInject */
-  constructor($element) {
-    this.$element = $element;
+  constructor() {
   }
 
   $onInit() {
-    try{
-      google
-    }
-    catch(err){
-      loadGoogleMapsAPI({
-          key: 'AIzaSyBon5CXrbuZJcsyGCAuZJcp4HzQi81eFoQ',
-          //v: '3.20', //defaults to latest 3.X anyhow
-          libraries: 'weather,geometry,visualization,places',
-          language: 'de'
-      }).then(() => {
-        this._initializeAutocomplete()
-      })
-    }
+    loadGoogleMapsAPI({
+        key: 'AIzaSyBon5CXrbuZJcsyGCAuZJcp4HzQi81eFoQ',
+        //v: '3.20', //defaults to latest 3.X anyhow
+        libraries: 'weather,geometry,visualization,places',
+        language: 'de'
+    }).then(() => {
+      this._initializeAutocomplete()
+    })
+    //try{
+      //this._initializeAutocomplete()
+    //}
+    //catch(err){
+      //loadGoogleMapsAPI({
+          //key: 'AIzaSyBon5CXrbuZJcsyGCAuZJcp4HzQi81eFoQ',
+          ////v: '3.20', //defaults to latest 3.X anyhow
+          //libraries: 'weather,geometry,visualization,places',
+          //language: 'de'
+      //}).then(() => {
+        //this._initializeAutocomplete()
+      //})
+    //}
   }
 
   _initializeAutocomplete() {
+    console.log('initialize autocomplete')
     var autocompleteListener = ()=> {
+      console.log('listen')
       var model = {location: {city: {}}}
       var place = autocomplete.getPlace()
       for (let component of place.address_components) {
@@ -53,6 +62,7 @@ class googleAutocompleteCmpCtrl {
       (element),
       {types: ['geocode'], componentRestrictions: {country: 'de'}}
     )
+    console.log(autocomplete)
     element.placeholder = ''
 
     autocomplete.addListener('place_changed', autocompleteListener)

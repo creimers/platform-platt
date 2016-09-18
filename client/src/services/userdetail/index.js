@@ -14,7 +14,8 @@ class userDetailSrvCtrl {
 
   _mapStateToThis(state) {
     return {
-      users: state.users
+      users: state.users,
+      profile: state.profile
     }
   }
 
@@ -29,7 +30,7 @@ class userDetailSrvCtrl {
           this.$mdDialog.hide() 
         }
         else {
-          this.$mdDialog.cancel()
+          this.$mdDialog.cancel({error: response})
         }
       }
     )
