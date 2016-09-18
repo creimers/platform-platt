@@ -39,7 +39,7 @@ export function getUsers(role, lat, lng, location, radius) {
       method: "GET",
     }
 
-    let url = BASE_URL + `users/?radius=${radius}&lat=${lat}&lng=${lng}`
+    let url = BASE_URL + `users/?radius=${radius}&lat=${lat}&lng=${lng}&role=${role}`
 
     return fetch(url, config)
       .then(response => response.json()

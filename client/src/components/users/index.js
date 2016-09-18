@@ -34,7 +34,9 @@ class UsersCtrl extends viewComponentCtrl{
     let lat = model.location.lat
     let lng = model.location.lon
     let radius = 50
-    this.getUsers(this.profile.profile.role, lat, lng, location, radius)
+
+    let role = this.profile.profile.role === 'learn' ? 'teach': 'learn'
+    this.getUsers(role, lat, lng, location, radius)
   }
 
   openUserModal(user) {
