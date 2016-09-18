@@ -1,0 +1,51 @@
+md-dialog(
+  flex="50"
+  )
+
+  md-toolbar.md-primary
+
+    div.md-toolbar-tools
+      h2 {{$ctrl.user.first_name}} {{$ctrl.user.last_name}}
+      span(
+      flex=''
+      )
+      md-button(
+      ng-click='$ctrl.cancel()'
+      ).md-icon-button
+        md-icon close
+
+  md-dialog-content(
+    layout="column"
+    layout-padding
+  )
+
+    div(ng-hide="$ctrl.contactForm")
+      h3 {{$ctrl.user.first_name}} {{$ctrl.user.last_name}}
+      p {{$ctrl.user.personal_description}}
+
+    div(ng-show="$ctrl.contactForm")
+      md-input-container
+        label Meine Nachricht
+        textarea(ng-model="$ctrl.contactText" required rows="5")
+
+  md-dialog-actions
+    md-progress-circular(
+      md-mode="indeterminate"
+      md-diameter="20"
+      ng-show="$ctrl.isFetching"
+      ).md-accent
+    md-button(
+      ng-click="$ctrl.toggleContactForm()"
+      ng-show="$ctrl.contactForm"
+      ng-disabled="$ctrl.isFetching"
+      ) zurück
+    md-button.md-raised.md-primary(
+      ng-click="$ctrl.toggleContactForm()"
+      ng-disabled="$ctrl.isFetching"
+      ng-show="!$ctrl.contactForm"
+      ) kontakt aufnehmen
+    md-button.md-raised.md-accent(
+      ng-click="$ctrl.submitContact()"
+      ng-show="$ctrl.contactForm"
+      ng-disabled="$ctrl.isFetching || !$ctrl.contactText"
+      ) absenden

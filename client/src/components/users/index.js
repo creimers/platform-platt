@@ -1,13 +1,15 @@
 import viewComponentCtrl from '../../controllers/viewcomponent'
 import * as userActions from '../../actions/users'
 
+import userDetailSrvCtrl from '../../services/userdetail'
+
 
 class UsersCtrl extends viewComponentCtrl{
   /* @ngInject */
-  constructor($rootScope, $q, jwtHelper, $ngRedux, $scope, $mdToast, $mdDialog) {
+  constructor($rootScope, $q, jwtHelper, $ngRedux, $scope, $mdToast, userDetailSrv) {
     super($rootScope, $q, jwtHelper, $ngRedux, $scope, $mdToast)
 
-    this.$mdDialog = $mdDialog
+    this.userDetailSrv = userDetailSrv
 
     const unsubscribe = $ngRedux.connect(this._mapStateToThis, userActions)(this)
     $scope.$on('$destroy', unsubscribe);
@@ -36,7 +38,9 @@ class UsersCtrl extends viewComponentCtrl{
   }
 
   openUserModal(user) {
-    console.log('details')
+    this.userDetailSrv.openModal(user).then(
+      () => this.$mdToast.showSimple('Anfrage gesendet!')
+    )
   }
 
 }
@@ -52,7 +56,7 @@ const MODULE_NAME = 'usersCmp';
 
 import './index.scss'
 
-angular.module(MODULE_NAME, [])
+angular.module(MODULE_NAME, [userDetailSrvCtrl])
   .component('usersCmp', usersCmp)
   .controller('UsersCtrl', UsersCtrl);
 
