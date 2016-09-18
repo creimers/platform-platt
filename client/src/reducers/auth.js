@@ -40,7 +40,6 @@ export default function auth(
       })
 
     case types.LOGOUT:
-      console.log('heide')
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: false,

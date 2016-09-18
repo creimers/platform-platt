@@ -3,14 +3,16 @@ div(layout="column" layout-fill)
     .md-toolbar-tools
       h2(ng-link="['Start']") plattform-platt.de
       span(flex)
+
       md-button(
         ng-show="$ctrl.auth.isAuthenticated"
         ng-link="['Profile']"
         ) Profil
-      //md-button(
-        //ng-show="$ctrl.auth.isAuthenticated"
-        //ng-link="['Users']"
-        //) manage users
+
+      md-button(
+        ng-show="$ctrl.auth.isAuthenticated"
+        ng-link="['Users']"
+        ) Finden
 
       md-button.md-icon-button(
         ng-show="!$ctrl.auth.isAuthenticated"

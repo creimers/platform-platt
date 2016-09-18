@@ -1,0 +1,25 @@
+div(layout="row" layout-align="center center").profile
+
+  div(layout="column" flex)
+    h1.md-display-3 Leute finden, platt schnacken
+    h2 {{$ctrl.users.currentLocation.location}}
+
+    google-autocomplete-cmp(
+      on-select="$ctrl.searchForUsers(model)"
+      placeholder="Gib einen Ort ein."
+      )
+
+    div(layout="row" layout-align="center")
+      md-progress-circular(
+        md-mode="indeterminate"
+        ng-show="$ctrl.users.isFetching"
+        ).md-accent
+
+    md-list
+      md-list-item.md-2-line.secondary-button-padding(
+        ng-repeat="user in $ctrl.users.users"
+        ng-click="$ctrl.openUserModal(user)"
+        )
+        .md-list-item-text
+          h3 {{user.first_name}} {{user.last_name}}
+          p {{user.location}}

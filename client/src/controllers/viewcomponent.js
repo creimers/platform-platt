@@ -2,7 +2,8 @@ import * as authActions from '../actions/auth'
 
 export default class viewComponentCtrl {
   /* @ngInject */
-  constructor($q, jwtHelper, $ngRedux, $scope, $mdToast) {
+  constructor($rootScope, $q, jwtHelper, $ngRedux, $scope, $mdToast) {
+    this.$rootScope = $rootScope
     this.$q = $q
     this.jwtHelper = jwtHelper
     this.$mdToast = $mdToast
@@ -39,12 +40,14 @@ export default class viewComponentCtrl {
             }
             else {
               deferred.resolve()
+              this.$rootScope.$broadcast('authenticated')
             }
           })
         }
         else {
           this.reauthenticateSuccess({token})
           deferred.resolve()
+          this.$rootScope.$broadcast('authenticated')
         }
       }
     }

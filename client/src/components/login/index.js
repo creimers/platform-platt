@@ -22,7 +22,7 @@ class LoginCtrl {
     .then((resp)=> {
       if(resp.ok) {
         this.$mdToast.showSimple('Moin moin.')
-        this.$rootScope.$broadcast('login-success')
+        this.$rootScope.$broadcast('authenticated')
         this.$router.navigate(['Profile'])
       }
     })

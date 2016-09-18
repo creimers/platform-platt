@@ -5,8 +5,8 @@ import * as profileActions from '../../actions/profile'
 
 class ProfileCtrl extends viewComponentCtrl{
   /* @ngInject */
-  constructor($q, jwtHelper, $ngRedux, $scope, $mdToast) {
-    super($q, jwtHelper, $ngRedux, $scope, $mdToast)
+  constructor($rootScope, $q, jwtHelper, $ngRedux, $scope, $mdToast) {
+    super($rootScope, $q, jwtHelper, $ngRedux, $scope, $mdToast)
 
     const unsubscribe = $ngRedux.connect(this._mapStateToThis, profileActions)(this)
     $scope.$on('$destroy', unsubscribe);

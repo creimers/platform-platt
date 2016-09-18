@@ -6,6 +6,7 @@ import Login from '../login'
 import Profile from '../profile'
 import Register from '../register'
 import Start from '../start'
+import Users from '../users'
 
 import * as authActions from '../../actions/auth'
 import * as profileActions from '../../actions/profile'
@@ -36,9 +37,11 @@ class RootCtrl {
 
   $onInit() {
     let getProfile = () => {
-      this.getProfile()
+      if(!this.profile.profile.email && !this.profile.isFetching) {
+        this.getProfile()
+      }
     }
-    this.$scope.$on('login-success', getProfile)
+    this.$scope.$on('authenticated', getProfile)
   }
 
   handleLogout() {
@@ -56,7 +59,7 @@ let rootCmp = {
     {path: '/registrieren', name: 'Register', component: 'registerCmp'},
     {path: '/login', name: 'Login', component: 'loginCmp'},
     {path: '/profil', name: 'Profile', component: 'profileCmp'},
-    //{path: '/users', name: 'Users', component: 'usersCmp'},
+    {path: '/users', name: 'Users', component: 'usersCmp'},
   ]
 };
 
@@ -74,6 +77,7 @@ angular.module(MODULE_NAME, [
   Profile,
   Register,
   Start,
+  Users
 ])
   .config(locationConfig)
   .component('rootCmp', rootCmp)
