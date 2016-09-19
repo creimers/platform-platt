@@ -18,7 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
             'username',
             'first_name',
             'last_name',
-            'role',
+            'level',
             'location',
             'coords',
             'personal_description'
@@ -32,7 +32,7 @@ class UserRegisterSerializer(UserRegistrationSerializer):
         model = Account
         fields = (
             'email',
-            'role',
+            'level',
             'location',
             'coords',
             'password'

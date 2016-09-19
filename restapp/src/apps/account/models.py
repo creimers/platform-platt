@@ -63,5 +63,14 @@ class Account(AbstractUser):
     profile_image = models.ImageField(null=True, blank=True)
     personal_description = models.TextField(null=True)
 
+    @classmethod
+    def get_level_name(cls, level):
+        level_mapping = {
+            'beginner': u'AnfängerIn',
+            'intermediate': u'Fortgeschritten',
+            'mothertongue': u'Flüssig'
+        }
+        return level_mapping.get(level)
+
 Account._meta.get_field_by_name('email')[0]._unique = True
 Account._meta.get_field_by_name('username')[0]._unique = False

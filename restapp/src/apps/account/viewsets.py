@@ -14,7 +14,7 @@ from .serializers import UserSerializer
 class UsersFilter(filters.FilterSet):
     class Meta:
         model = User
-        fields = ['role', ]
+        fields = ['level', ]
 
     radius = django_filters.MethodFilter(action='apply_radius_filter')
 

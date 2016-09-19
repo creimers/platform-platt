@@ -63,7 +63,7 @@ def users():
             last_name="Doe %s" % i,
             coords=point,
             location=loc['name'],
-            role=random.choice(['teach', 'learn'])
+            level=random.choice(['beginner', 'intermediate', 'mothertongue'])
         )
         users.append(user)
     return users

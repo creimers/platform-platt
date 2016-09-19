@@ -34,18 +34,18 @@ def test_users_list_GET_200(rest_client, users):
 
 
 @pytest.mark.django_db
-def test_users_list_filter_role_GET_200(rest_client, users):
+def test_users_list_filter_level_GET_200(rest_client, users):
     """
-    authenticated user can access user list and filter for role
+    authenticated user can access user list and filter for level
     """
 
     rest_client.force_authenticate(user=users[0])
-    url = reverse('users-list') + '?role=learn'
+    url = reverse('users-list') + '?level=beginner'
     response = rest_client.get(url)
 
     assert response.status_code == 200
     for user in response.data:
-        assert user['role'] == 'learn'
+        assert user['level'] == 'beginner'
 
 
 @pytest.mark.django_db
@@ -82,7 +82,7 @@ def test_account_GET_200(rest_client, users):
 
 
 @pytest.mark.django_db
-def test_account_GET_200(rest_client, users):
+def test_account_PUT_200(rest_client, users):
     user = users[0]
     rest_client.force_authenticate(user=user)
     url = reverse('profile')
@@ -91,7 +91,7 @@ def test_account_GET_200(rest_client, users):
     user_update['first_name'] = user.first_name
     user_update['last_name'] = user.last_name
     user_update['username'] = user.username
-    user_update['role'] = user.role
+    user_update['level'] = user.level
     user_update['location'] = 'Pinneberg'
     user_update['coords'] = {'latitude': 53.6463, 'longitude': 9.7961}
     response = rest_client.put(url, user_update, format="json")
