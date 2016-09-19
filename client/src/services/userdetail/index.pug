@@ -29,6 +29,10 @@ md-dialog.contact-dialog(
         textarea(ng-model="$ctrl.contactText" required rows="5")
 
   md-dialog-actions
+    p(ng-hide="$ctrl.profileComplete") Bitte erst dein &nbsp;
+      a.md-primary(ng-click="$ctrl.goToProfile()") Profil
+      | &nbsp; vervollständigen!
+
     md-progress-circular(
       md-mode="indeterminate"
       md-diameter="20"
@@ -41,7 +45,7 @@ md-dialog.contact-dialog(
       ) zurück
     md-button.md-raised.md-primary(
       ng-click="$ctrl.toggleContactForm()"
-      ng-disabled="$ctrl.isFetching"
+      ng-disabled="$ctrl.isFetching || !$ctrl.profileComplete"
       ng-show="!$ctrl.contactForm"
       ) kontakt aufnehmen
     md-button.md-raised.md-accent(

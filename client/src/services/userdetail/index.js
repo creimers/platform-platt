@@ -2,12 +2,13 @@ import * as usersActions from '../../actions/users'
 
 class userDetailSrvCtrl {
   /* @ngInject */
-  constructor($mdDialog, $ngRedux, $scope, profileSrv) {
+  constructor($mdDialog, $ngRedux, $scope, profileSrv, $rootRouter) {
     const unsubscribe = $ngRedux.connect(this._mapStateToThis, usersActions)(this)
     $scope.$on('$destroy', unsubscribe);
 
     this.$mdDialog = $mdDialog
     this.profileSrv = profileSrv
+    this.$rootRouter = $rootRouter
 
     this.contactForm = false
     this.contactText = ''
@@ -42,6 +43,11 @@ class userDetailSrvCtrl {
   toggleContactForm() {
     this.contactForm = !this.contactForm
     this.contactText = ''
+  }
+
+  goToProfile() {
+    this.$mdDialog.cancel()
+    this.$rootRouter.navigate(['Profile']) 
   }
 
 }
