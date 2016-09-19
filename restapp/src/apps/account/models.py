@@ -38,7 +38,7 @@ class AccountManager(BaseUserManager):
 
 class Account(AbstractUser):
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = [ ]
+    REQUIRED_FIELDS = []
 
     objects = AccountManager()
 
@@ -46,7 +46,17 @@ class Account(AbstractUser):
         ('learn', 'learn'),
         ('teach', 'teach')
     )
+    LEVEL_CHOICES = (
+        ('beginner', 'beginner'),
+        ('intermediate', 'intermediate'),
+        ('mothertongue', 'mothertongue')
+    )
     role = models.CharField(max_length=5, choices=ROLE_CHOICES)
+    level = models.CharField(
+        max_length=12,
+        choices=LEVEL_CHOICES,
+        default='beginner'
+    )
     location = models.CharField(max_length=255, blank=True, null=True)
     coords = models.PointField(null=True, blank=True)
 
