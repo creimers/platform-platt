@@ -2,14 +2,17 @@ import * as usersActions from '../../actions/users'
 
 class userDetailSrvCtrl {
   /* @ngInject */
-  constructor($mdDialog, $ngRedux, $scope) {
+  constructor($mdDialog, $ngRedux, $scope, profileSrv) {
     const unsubscribe = $ngRedux.connect(this._mapStateToThis, usersActions)(this)
     $scope.$on('$destroy', unsubscribe);
 
-    this.$mdDialog = $mdDialog;
+    this.$mdDialog = $mdDialog
+    this.profileSrv = profileSrv
 
     this.contactForm = false
     this.contactText = ''
+
+    this.profileComplete = this.profileSrv.isProfileComplete(this.profile.profile)
   }
 
   _mapStateToThis(state) {
@@ -66,6 +69,6 @@ class userDetailSrv {
 const MODULE_NAME = 'app.services.loginModal.service';
 angular.module(MODULE_NAME, [])
   .controller('userDetailSrvCtrl', userDetailSrvCtrl)
-  .service('userDetailSrv', userDetailSrv);
+  .service('userDetailSrv', userDetailSrv)
 
-export default MODULE_NAME;
+export default MODULE_NAME

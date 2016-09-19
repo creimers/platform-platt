@@ -1,8 +1,7 @@
-import { HttpSrv } from './http'
+import profileSrv from './profile'
 
 const MODULE_NAME = 'services'
 
-angular.module(MODULE_NAME, [])
-  .service('httpSrv', HttpSrv)
+angular.module(MODULE_NAME, [profileSrv])
 
 export default MODULE_NAME
