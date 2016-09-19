@@ -1,8 +1,8 @@
 div(layout="row" layout-align="center center").profile
 
   div(layout="column" flex)
-    h1.md-display-3 Leute finden, platt schnacken
-    h2 {{$ctrl.users.currentLocation.location}}
+    h1.md-display-1 Leute finden, platt schnacken
+    h2.md-headline(ng-show="$ctrl.users.currentLocation.location") aktuelle Suche: {{$ctrl.users.currentLocation.location}}
 
     google-autocomplete-cmp(
       on-select="$ctrl.searchForUsers(model)"

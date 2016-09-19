@@ -1,11 +1,11 @@
-md-dialog(
+md-dialog.contact-dialog(
   flex="50"
   )
 
   md-toolbar.md-primary
 
     div.md-toolbar-tools
-      h2 {{$ctrl.user.first_name}} {{$ctrl.user.last_name}}
+      h2 {{$ctrl.user.first_name}} {{$ctrl.user.last_name}} ({{$ctrl.user.level}})
       span(
       flex=''
       )
@@ -23,9 +23,9 @@ md-dialog(
       h3 {{$ctrl.user.first_name}} {{$ctrl.user.last_name}}
       p {{$ctrl.user.personal_description}}
 
-    div(ng-show="$ctrl.contactForm")
+    div(ng-if="$ctrl.contactForm")
       md-input-container
-        label Meine Nachricht
+        label Meine Nachricht an {{$ctrl.user.first_name}}
         textarea(ng-model="$ctrl.contactText" required rows="5")
 
   md-dialog-actions
