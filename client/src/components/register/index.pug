@@ -1,9 +1,10 @@
 h1.md-display-1 Registrieren
 
-md-card(layout-margin)
+md-card
+  md-card-content
 
-  p.error-message {{$ctrl.register.registerErrorMessage}}
-  register-form-cmp(
-    on-submit="$ctrl.onRegister(model)"
-    is-fetching="$ctrl.register.isFetching"
-    )
+    p.error-message {{$ctrl.register.registerErrorMessage}}
+    register-form-cmp(
+      on-submit="$ctrl.onRegister(model)"
+      is-fetching="$ctrl.register.isFetching"
+      )

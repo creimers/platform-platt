@@ -27,15 +27,15 @@ div(layout="column" layout-fill)
         md-icon power_settings_new
 
   md-content(flex layout="column")
-    main(layout="row" layout-align="center stretch" flex="none")
-      div(layout="column" flex="50" flex-xs="100")
+    main(layout="row" layout-align="center stretch" flex="none" layout-padding)
+      div(layout="column" flex="50" flex-xs="100" flex-sm="75")
         ng-outlet
 
     span(flex)
 
-    footer(flex="none")
+    footer(flex="none" layout-padding)
       div(layout="row" layout-align="center stretch" flex="none")
-        div(layout="column" flex="50" flex-xs="100")
+        div(layout="column" flex="50" flex-xs="100" flex-sm="75")
           ul
             li Kontakt
             li Impressum
