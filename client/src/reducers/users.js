@@ -46,6 +46,14 @@ export default function users (
           contactUserError: action.error
         })
 
+    case types.LOGOUT:
+      return Object.assign({}, state, {
+        isFetching: false,
+        users: [],
+        getUsersError: '',
+        currentLocation: {}
+      })
+
       default:
         return state
     }
