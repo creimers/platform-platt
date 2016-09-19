@@ -23,7 +23,6 @@ class LoginCtrl {
       if(resp.ok) {
         this.$mdToast.showSimple('Moin moin.')
         this.$rootScope.$broadcast('authenticated')
-        this.$router.navigate(['Profile'])
       }
     })
   }

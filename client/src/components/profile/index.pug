@@ -1,7 +1,8 @@
 div(layout="row" layout-align="center center").profile
 
   div(layout="column" flex)
-    h1.md-display-3 Profil
+    h1.md-display-1 Profil
+    p(ng-show="!$ctrl.profile.isComplete") Bitte fülle dein Profil aus, um suchen zu könne und gefunden zu werden!
 
     div(layout="row" layout-align="center center")
       md-progress-circular(

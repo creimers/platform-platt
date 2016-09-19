@@ -10,7 +10,8 @@ export default function profile (
       personal_description: '',
       coords: {},
       location: '',
-      role: ''
+      role: '',
+      isComplete: false
     },
     isFetching: false,
     updateProfileError: ''
@@ -26,7 +27,8 @@ export default function profile (
       case types.GET_PROFILE_SUCCESS:
         return Object.assign({}, state, {
           isFetching: false,
-          profile: action.profile
+          profile: action.profile,
+          isComplete: action.isComplete
         })
 
       case types.GET_PROFILE_ERROR:
@@ -49,7 +51,8 @@ export default function profile (
       case types.UPDATE_PROFILE_SUCCESS:
         return Object.assign({}, state, {
           isFetching: false,
-          profile: action.profile
+          profile: action.profile,
+          isComplete: action.isComplete
         })
 
     case types.LOGOUT:

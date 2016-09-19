@@ -2,18 +2,15 @@ import * as usersActions from '../../actions/users'
 
 class userDetailSrvCtrl {
   /* @ngInject */
-  constructor($mdDialog, $ngRedux, $scope, profileSrv, $rootRouter) {
+  constructor($mdDialog, $ngRedux, $scope, $rootRouter) {
     const unsubscribe = $ngRedux.connect(this._mapStateToThis, usersActions)(this)
     $scope.$on('$destroy', unsubscribe);
 
     this.$mdDialog = $mdDialog
-    this.profileSrv = profileSrv
     this.$rootRouter = $rootRouter
 
     this.contactForm = false
     this.contactText = ''
-
-    this.profileComplete = this.profileSrv.isProfileComplete(this.profile.profile)
   }
 
   _mapStateToThis(state) {

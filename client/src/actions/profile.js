@@ -1,5 +1,6 @@
 import * as types from '../constants/actiontypes'
 import { BASE_URL } from '../constants/http'
+import { isProfileComplete } from '../utils/profile'
 
 function getProfileRequest () {
   return {
@@ -12,7 +13,8 @@ function getProfileSuccess(response) {
   return {
     type: types.GET_PROFILE_SUCCESS,
     isFetching: true,
-    profile: response
+    profile: response,
+    isComplete: isProfileComplete(response)
   }
 }
 
@@ -65,7 +67,8 @@ function updateProfileSuccess(profile) {
   return {
     type: types.UPDATE_PROFILE_SUCCESS,
     isFetching: false,
-    profile: profile
+    profile: profile,
+    isComplete: isProfileComplete(profile)
   }
 }
 

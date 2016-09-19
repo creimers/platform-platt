@@ -38,7 +38,14 @@ class RootCtrl {
   $onInit() {
     let getProfile = () => {
       if(!this.profile.profile.email && !this.profile.isFetching) {
-        this.getProfile()
+        this.getProfile().then(()=> {
+          if(!this.profile.isComplete) {
+            this.$router.navigate(['Profile'])
+          }
+          else {
+            this.$router.navigate(['Users'])
+          }
+        })
       }
     }
     this.$scope.$on('authenticated', getProfile)

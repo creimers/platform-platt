@@ -30,9 +30,7 @@ class googleAutocompleteCmpCtrl {
   }
 
   _initializeAutocomplete() {
-    console.log('initialize autocomplete')
     var autocompleteListener = ()=> {
-      console.log('listen')
       var model = {location: {city: {}}}
       var place = autocomplete.getPlace()
       for (let component of place.address_components) {
@@ -62,7 +60,6 @@ class googleAutocompleteCmpCtrl {
       (element),
       {types: ['geocode'], componentRestrictions: {country: 'de'}}
     )
-    console.log(autocomplete)
     element.placeholder = ''
 
     autocomplete.addListener('place_changed', autocompleteListener)

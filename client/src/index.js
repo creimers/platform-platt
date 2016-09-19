@@ -8,8 +8,6 @@ import angularRedux from 'ng-redux'
 import rootReducer from './reducers'
 import thunk from 'redux-thunk'
 
-import config from './config'
-
 import rootCmp from './components/root';
 
 import theme from './theme'
@@ -33,7 +31,6 @@ angular.module(MODULE_NAME, [
   angularRedux,
   angularjwt,
   theme,
-  config,
   rootCmp
 ])
 .config(reduxConfig)
