@@ -26,7 +26,16 @@ div(layout="column" layout-fill)
         )
         md-icon power_settings_new
 
-  md-content
-    main(layout="row" layout-align="center stretch")
-      div(layout="column" flex="50")
+  md-content(flex layout="column")
+    main(layout="row" layout-align="center stretch" flex="none")
+      div(layout="column" flex="50" flex-xs="100")
         ng-outlet
+
+    span(flex)
+
+    footer(flex="none")
+      div(layout="row" layout-align="center stretch" flex="none")
+        div(layout="column" flex="50" flex-xs="100")
+          ul
+            li Kontakt
+            li Impressum
