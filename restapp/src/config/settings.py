@@ -31,6 +31,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8080'
+)
+
 SITE_ID = 1
 
 AUTH_USER_MODEL = 'account.Account'
@@ -47,12 +51,19 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.gis',
 
+    'rest_framework',
+    'rest_framework_jwt',
+    'djoser',
+
+    'corsheaders',
+
     'apps.account',
     'apps.contact'
 ]
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
