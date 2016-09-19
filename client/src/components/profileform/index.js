@@ -36,12 +36,18 @@ class ProfileFormCtrl {
         }
       },
       {
-        key: 'username',
-        type: 'input',
+        type: 'select',
+        key: 'level',
         templateOptions: {
-          type: 'text',
-          label: 'Benutzername',
           required: true,
+          label: 'Platt-Level',
+          labelProp: 'level',
+          valueProp: 'value',
+          options: [
+            {level: 'AnfängerIn', value: 'AnfängerIn'},
+            {level: 'Fortgeschritten', value: 'Fortgeschritten'},
+            {level: 'Platt-Profi', value: 'Platt-Profi'}
+          ]
         }
       },
       {
@@ -58,6 +64,7 @@ class ProfileFormCtrl {
         key: 'personal_description',
         type: 'textarea',
         templateOptions: {
+          required: true,
           grow: true,
           rows: 5,
           label: 'Kurzvorstellung'

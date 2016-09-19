@@ -54,14 +54,14 @@ export function getProfile() {
   }
 }
 
-let updateProfileRequest = ()=> {
+function updateProfileRequest() {
   return {
     type: types.UPDATE_PROFILE_REQUEST,
     isFetching: true,
   }
 }
 
-let updateProfileSuccess = (profile)=> {
+function updateProfileSuccess(profile) {
   return {
     type: types.UPDATE_PROFILE_SUCCESS,
     isFetching: false,
@@ -69,7 +69,7 @@ let updateProfileSuccess = (profile)=> {
   }
 }
 
-let updateProfileError = (error)=> {
+function updateProfileError(error) {
   return {
     type: types.UPDATE_PROFILE_ERROR,
     isFetching: false,

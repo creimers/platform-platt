@@ -25,7 +25,7 @@ function getUsersError(error) {
   }
 }
 
-export function getUsers(role, lat, lng, location, radius) {
+export function getUsers(lat, lng, location, radius) {
   return dispatch => {
     dispatch(getUsersRequest(lat, lng, location))
 
@@ -39,7 +39,7 @@ export function getUsers(role, lat, lng, location, radius) {
       method: "GET",
     }
 
-    let url = BASE_URL + `users/?radius=${radius}&lat=${lat}&lng=${lng}&role=${role}`
+    let url = BASE_URL + `users/?radius=${radius}&lat=${lat}&lng=${lng}`
 
     return fetch(url, config)
       .then(response => response.json()

@@ -11,6 +11,21 @@ class RegisterFormCtrl {
     this.options = {}
     this.formFields = [
       {
+        type: 'select',
+        key: 'level',
+        templateOptions: {
+          required: true,
+          label: 'Platt-Level',
+          labelProp: 'level',
+          valueProp: 'value',
+          options: [
+            {level: 'AnfängerIn', value: 'AnfängerIn'},
+            {level: 'Fortgeschritten', value: 'Fortgeschritten'},
+            {level: 'Platt-Profi', value: 'Platt-Profi'}
+          ]
+        }
+      },
+      {
         key: 'email',
         type: 'input',
         templateOptions: {
