@@ -15,6 +15,7 @@ div(layout="row" layout-align="center center").profile
         ng-show="$ctrl.users.isFetching"
         ).md-accent
 
+    p(ng-show="!$ctrl.users.users.length && $ctrl.users.currentLocation.location") Leider keine Treffer!
     md-list
       md-list-item.md-3-line.secondary-button-padding(
         ng-repeat="user in $ctrl.users.users"
@@ -24,3 +25,4 @@ div(layout="row" layout-align="center center").profile
           h3 {{user.first_name}} {{user.last_name}}
           h3 {{user.level}}
           p {{user.location}}
+        md-divider(ng-if="!$last")
