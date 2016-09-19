@@ -40,12 +40,12 @@ def test_users_list_filter_level_GET_200(rest_client, users):
     """
 
     rest_client.force_authenticate(user=users[0])
-    url = reverse('users-list') + '?level=beginner'
+    url = reverse('users-list') + '?level=Anfänger'
     response = rest_client.get(url)
 
     assert response.status_code == 200
     for user in response.data:
-        assert user['level'] == 'beginner'
+        assert user['level'] == 'Anfänger'
 
 
 @pytest.mark.django_db

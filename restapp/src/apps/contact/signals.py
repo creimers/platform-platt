@@ -3,7 +3,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 
-from apps.account.models import Account
 from .models import Contact
 
 
@@ -16,7 +15,6 @@ def send_contact_email(sender, instance, **kwargs):
             "receiver": instance.receiver,
             "sender": instance.sender,
             "message": instance.message,
-            "level": Account.get_level_name(instance.sender.level)
         }
     )
 

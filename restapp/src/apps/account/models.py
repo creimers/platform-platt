@@ -47,30 +47,21 @@ class Account(AbstractUser):
         ('teach', 'teach')
     )
     LEVEL_CHOICES = (
-        ('beginner', 'beginner'),
-        ('intermediate', 'intermediate'),
-        ('mothertongue', 'mothertongue')
+        (u'AnfängerIn', u'AnfängerIn'),
+        ('Fortgeschritten', 'Fortgeschritten'),
+        ('Platt-Profi', 'Platt-Profi')
     )
     role = models.CharField(max_length=5, choices=ROLE_CHOICES)
     level = models.CharField(
-        max_length=12,
+        max_length=120,
         choices=LEVEL_CHOICES,
-        default='beginner'
+        default=u'AnfängerIn'
     )
     location = models.CharField(max_length=255, blank=True, null=True)
     coords = models.PointField(null=True, blank=True)
 
     profile_image = models.ImageField(null=True, blank=True)
     personal_description = models.TextField(null=True)
-
-    @classmethod
-    def get_level_name(cls, level):
-        level_mapping = {
-            'beginner': u'AnfängerIn',
-            'intermediate': u'Fortgeschritten',
-            'mothertongue': u'Flüssig'
-        }
-        return level_mapping.get(level)
 
 Account._meta.get_field_by_name('email')[0]._unique = True
 Account._meta.get_field_by_name('username')[0]._unique = False

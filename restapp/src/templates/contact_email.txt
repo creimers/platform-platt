@@ -6,7 +6,7 @@ Hallo {{receiver.first_name}} {{receiver.last_name}},
 {{message}}
 "
 
-Das Platt-Level von {{sender.first_name}} ist {{level}}.
+Das Platt-Level von {{sender.first_name}} ist {{sender.level}}.
 
 Du kannst {{sender.first_name}} {{sender.last_name}} unter {{sender.email}} antworten.
 
