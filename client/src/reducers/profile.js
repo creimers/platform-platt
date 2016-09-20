@@ -21,7 +21,8 @@ export default function profile (
     switch(action.type) {
       case types.GET_PROFILE_REQUEST:
         return Object.assign({}, state, {
-          isFetching: true
+          isFetching: true,
+          profile: action.profile
         })
 
       case types.GET_PROFILE_SUCCESS:

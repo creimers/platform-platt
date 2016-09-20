@@ -56,10 +56,11 @@ export function getProfile() {
   }
 }
 
-function updateProfileRequest() {
+function updateProfileRequest(profile) {
   return {
     type: types.UPDATE_PROFILE_REQUEST,
     isFetching: true,
+    profile: profile,
   }
 }
 
