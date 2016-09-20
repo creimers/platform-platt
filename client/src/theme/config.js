@@ -5,8 +5,8 @@ import materialDesign from 'angular-material';
 let themeConfig = ($mdThemingProvider) => {
   $mdThemingProvider
     .theme('default')
-    .primaryPalette('indigo')
-    .accentPalette('amber')
+    .primaryPalette('blue')
+    .accentPalette('red')
     .warnPalette('red')
 };
 
