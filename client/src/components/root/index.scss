@@ -1,4 +1,6 @@
 root-cmp{
+  $green: #21A145;
+
   display: block;
 
   /*main{*/
@@ -7,11 +9,18 @@ root-cmp{
 
   footer{
     margin-top: 5rem;
-    border-bottom: 1rem solid lightgreen;
+    /*border-bottom: 1rem solid $green;*/
 
     .windmills {
       height: 50px;
     }
+
+    .footer-content{
+      background: $green;
+      color: white;
+      padding-bottom: 2rem;
+    }
+
 
   }
 }
