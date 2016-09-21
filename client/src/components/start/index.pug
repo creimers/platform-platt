@@ -25,6 +25,9 @@ section(flex layout="row" layout-align="center stretch")
 
   div(layout="column" flex="50" flex-xs="100" layout-padding)
 
+    div(layout="row" layout-align="space-around")
+      md-button.md-raised.md-accent(ng-link="['Login']") einloggen
+      md-button.md-raised.md-primary(ng-link="['Register']") Registrieren
 
     h2.md-title Platt für jedes Niveau
     p.md-body-1 Auf plattform-platt.de findest du den richtigen Sprach-Partner für dein Platt Niveau. Als Plattdeutsch-Anfägner kannst du beispielsweise versuchen, einen Platt-Partner zu finden, der auf einem höheren Niveau spricht und dir so den einen oder anderen Kniff abgucken.
@@ -35,8 +38,3 @@ section(flex layout="row" layout-align="center stretch")
     p.md-body-1 Du weißt nicht, was Plattdeutsch ist? Dann findest du &nbsp
       a(href="https://de.wikipedia.org/wiki/Niederdeutsche_Sprache" target="_blank") hier
       | &nbsp; einen Überblick. 
-
-
-    div(layout="row")
-      md-button.md-raised.md-accent(ng-link="['Login']") einloggen
-      md-button.md-raised.md-primary(ng-link="['Register']") Registrieren
