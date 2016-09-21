@@ -5,6 +5,16 @@ div(layout="column" layout-fill)
       span(flex)
 
       md-button(
+        ng-show="!$ctrl.auth.isAuthenticated"
+        ng-link="['Login']"
+        ) Login
+
+      md-button(
+        ng-show="!$ctrl.auth.isAuthenticated"
+        ng-link="['Register']"
+        ) Registrieren
+
+      md-button(
         ng-show="$ctrl.auth.isAuthenticated"
         ng-link="['Profile']"
         ) Profil
@@ -14,11 +24,11 @@ div(layout="column" layout-fill)
         ng-link="['Users']"
         ) Finden
 
-      md-button.md-icon-button(
-        ng-show="!$ctrl.auth.isAuthenticated"
-        ng-link="['Login']"
-        )
-        md-icon power_settings_new
+      //md-button.md-icon-button(
+        //ng-show="!$ctrl.auth.isAuthenticated"
+        //ng-link="['Login']"
+        //)
+        //md-icon power_settings_new
 
       md-button.md-icon-button(
         ng-show="$ctrl.auth.isAuthenticated"
