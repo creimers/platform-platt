@@ -13,6 +13,7 @@ import * as profileActions from '../../actions/profile'
 
 import './index.scss';
 
+
 class RootCtrl {
   /* @ngInject */
   constructor($rootRouter, $ngRedux, $scope) {
@@ -25,6 +26,7 @@ class RootCtrl {
     $scope.$on('$destroy', unsubscribeProfile);
 
     this.$scope = $scope
+    this.windmills = require('../../img/windmills.svg')
   }
 
 

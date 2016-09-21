@@ -9,7 +9,7 @@ class StartCmpCtrl {
   * @param {object} $scope
   **/
   /* @ngInject */
-  //constructor($ngRedux, $scope) {
+  constructor($ngRedux, $scope) {
     //this.model = {}
     //this.form = {}
     //this.options = {}
@@ -18,7 +18,10 @@ class StartCmpCtrl {
     //$scope.$on('$destroy', unsubscribe);
 
     //this._loadProfile()
-  //}
+
+    this.windmills = require('../../img/windmills.svg')
+    this.lighthouse = require('../../img/lighthouse.svg')
+  }
 
   //_mapStateToThis(state) {
     //return {
