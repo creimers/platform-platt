@@ -7,15 +7,18 @@ header(flex layout="row" layout-align="center stretch")
 
     span(flex)
 
-    div(layout="row" layout-align="space-between")
+    div(layout="row")
 
       div(layout="row" layout-align="start end")
         img(src="{{$ctrl.lighthouse}}").lighthouse
 
-      div(layout="row" layout-align="center center")
+      div(layout="row" layout-align="center center" flex)
         div(layout="column" layout-align="center" hide show-gt-sm)
           h1.md-display-2 Plattform-Platt
           p.md-subhead Auf plattform-platt.de findest du Leute in deiner Nähe, mit denen du Plattdeutsch sprechen kannst.
+
+      div(layout="row" layout-align="start start")
+        img(src="{{$ctrl.cloud}}").cloud
 
       div(layout="row" layout-align="start end")
         img(src="{{$ctrl.windmills}}").windmills

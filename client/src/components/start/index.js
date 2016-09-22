@@ -21,6 +21,7 @@ class StartCmpCtrl {
 
     this.windmills = require('../../img/windmills.svg')
     this.lighthouse = require('../../img/lighthouse.svg')
+    this.cloud = require('../../img/cloud.svg')
   }
 
   //_mapStateToThis(state) {
