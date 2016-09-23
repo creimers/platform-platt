@@ -1,2 +1,4 @@
 client/dist
 client/coverage
+
+restapp/.env

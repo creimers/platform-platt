@@ -29,7 +29,7 @@ SECRET_KEY = 'ov4p%2ls7+tmi&@qt@=3_n+px*oxqk#+%jeza93j!1p!-cr$n9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'www.plattform-platt.de', 'plattform-platt.de']
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080'
@@ -71,6 +71,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -108,8 +109,8 @@ DATABASES = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': os.getenv('DB_NAME', 'djangocms_demo_local'),
         'HOST': os.getenv('DB_HOST', 'localhost'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
         'PORT': os.getenv('DB_PORT', ''),
     },
 }
@@ -153,9 +154,10 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'collected_static')
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+# STATICFILES_DIRS = (
+    # os.path.join(BASE_DIR, 'static'),
+# )
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, "media")
 MEDIA_URL = "/media/"
@@ -194,4 +196,17 @@ JWT_AUTH = {
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=6),  # After this time you need to reauthenticate
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 25
+EMAIL_USE_TLS = False
+
+SERVER_EMAIL = os.environ.get('SERVER_EMAIL')
+
+MANAGER_EMAIL = [
+    'christoph@reimers.family',
+]
